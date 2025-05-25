@@ -1,0 +1,20 @@
+{
+  "Home": {
+    "deployNow": "Déployer maintenant",
+    "footer": {
+      "examples": "Exemples",
+      "goToNext": "Aller sur nextjs.org →",
+      "learn": "Apprendre"
+    },
+    "getStarted": "Commencez par éditer",
+    "readDocs": "Lire nos docs",
+    "saveChanges": "Enregistrez et visualisez vos modifications instantanément"
+  },
+  "ThemeSwitcher": {
+    "dark": "Sombre",
+    "label": "Thème",
+    "light": "Clair",
+    "srOnly": "Changer de thème",
+    "system": "Système"
+  }
+}
