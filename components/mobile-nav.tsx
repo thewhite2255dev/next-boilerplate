@@ -1,22 +1,21 @@
-"use client";
+"use client"
 
-import { useEffect, useState } from "react";
-import { Link, usePathname } from "@/i18n/navigation";
-import { Menu } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useTranslations } from "next-intl";
-import { navItemsType } from "./header";
-import Image from "next/image";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useState } from "react"
+import { Link } from "@/i18n/navigation"
+import { Menu } from "lucide-react"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useTranslations } from "next-intl"
+import { navItemsType } from "./header"
+import Image from "next/image"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export function MobileNav() {
-  const t = useTranslations();
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const t = useTranslations()
+  const [open, setOpen] = useState(false)
 
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile()
 
   const navItems: navItemsType = [
     {
@@ -27,7 +26,7 @@ export function MobileNav() {
       label: t("Home.readDocs"),
       href: "https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
     },
-  ];
+  ]
 
   return (
     <Sheet open={isMobile && open} onOpenChange={setOpen}>
@@ -54,7 +53,7 @@ export function MobileNav() {
                       item.label === t("Home.deployNow")
                         ? "default"
                         : "outline",
-                  }),
+                  })
                 )}
                 onClick={() => setOpen(false)}
                 target="_blank"
@@ -78,5 +77,5 @@ export function MobileNav() {
         </div>
       </SheetContent>
     </Sheet>
-  );
+  )
 }
