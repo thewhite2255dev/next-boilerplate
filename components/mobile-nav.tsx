@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { Link } from "@/i18n/navigation"
-import { Menu } from "lucide-react"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useTranslations } from "next-intl"
@@ -11,13 +10,17 @@ import { navItemsType } from "./header"
 import Image from "next/image"
 import { useIsMobile } from "@/hooks/use-mobile"
 
-export function MobileNav() {
-  const t = useTranslations()
+interface MobileNavProps {
+  children?: React.ReactNode
+}
+
+export function MobileNav({ children }: MobileNavProps) {
+    const t = useTranslations()
   const [open, setOpen] = useState(false)
 
-  const isMobile = useIsMobile()
+  const isMobile = useIsMobile()    
 
-  const navItems: navItemsType = [
+  const navItems: navItemsType[] = [
     {
       label: t("Home.deployNow"),
       href: "https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app",
@@ -30,15 +33,10 @@ export function MobileNav() {
 
   return (
     <Sheet open={isMobile && open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="sm">
-          <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle menu</span>
-        </Button>
-      </SheetTrigger>
+      <SheetTrigger asChild>{children}</SheetTrigger>
 
       <SheetContent
-        side="right"
+        side="left"
         className="max-h-screen w-[250px] overflow-y-scroll px-4 sm:w-[300px]"
       >
         <div className="flex h-full flex-col gap-6 pt-16 pb-6">

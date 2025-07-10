@@ -14,23 +14,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
 
-interface ThemeSwitcherProps extends React.HTMLAttributes<HTMLElement> {
-  className?: string
+interface ThemeSwitcherProps extends React.ComponentProps<typeof Button> {
+  children?: React.ReactNode
 }
 
-export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
+export function ThemeSwitcher({ children }: ThemeSwitcherProps) {
   const { theme, setTheme } = useTheme()
   const t = useTranslations("ThemeSwitcher")
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className={className}>
-          <Sun className="scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">{t("srOnly")}</span>
-        </Button>
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuItem
           onClick={() => setTheme("system")}
@@ -38,7 +32,7 @@ export function ThemeSwitcher({ className }: ThemeSwitcherProps) {
         >
           <Monitor className="h-4 w-4" />
           <span className="mr-auto">{t("system")}</span>
-        </DropdownMenuItem>
+        </DropdownMenuItem> 
         <DropdownMenuItem
           onClick={() => setTheme("light")}
           className={cn(theme === "light" && "bg-accent")}

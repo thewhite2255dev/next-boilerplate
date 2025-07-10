@@ -5,16 +5,18 @@ import { MobileNav } from "@/components/mobile-nav"
 import { ThemeSwitcher } from "./theme-switcher"
 import { SiteConfig } from "@/lib/site-config"
 import { cn } from "@/lib/utils"
+import { Button } from "./ui/button"
+import { Menu, Moon, Sun } from "lucide-react"
 
 export type navItemsType = {
   label: string
   href: string
-}[]
+}
 
 export function Header() {
   const pathname = usePathname()
 
-  const navItems: navItemsType = []
+  const navItems: navItemsType[] = []
 
   return (
     <header className="bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur">
@@ -40,9 +42,22 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-1">
-          <ThemeSwitcher />
+          <ThemeSwitcher>
+        <Button className="hover:bg-secondary text-secondary-foreground flex h-9 w-9 rounded-full bg-transparent shadow-none max-md:hidden">
+              <Sun className="size-5 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+              <Moon className="absolute size-5 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+            </Button>
+          </ThemeSwitcher>
           <div className="block lg:hidden">
-            <MobileNav />
+            <MobileNav>
+          <Button
+              size="icon"
+              variant="secondary"
+              className="hover:bg-secondary text-secondary-foreground flex h-9 w-9 rounded-full bg-transparent shadow-none lg:hidden"
+            >
+              <Menu className="size-5" />
+            </Button>
+            </MobileNav>
           </div>
         </div>
       </div>
